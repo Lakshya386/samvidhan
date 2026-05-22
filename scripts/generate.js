@@ -273,8 +273,8 @@ async function callGemini(article, attempt=1) {
 
   if(res.status===429||res.status>=500){
     if(attempt<=4){
-      const wait=attempt*15000;
-      console.log(`    ⏳ Rate limited. Waiting ${wait/5000}s...`);
+      const wait=attempt*30000;
+      console.log(`    ⏳ Rate limited. Waiting ${wait/1000}s...`);
       await new Promise(r=>setTimeout(r,wait));
       return callGemini(article,attempt+1);
     }
@@ -330,11 +330,11 @@ async function main(){
       const data=await callGemini(article);
       fs.writeFileSync(filePath,JSON.stringify(data,null,2),"utf8");
       done++;
-      await new Promise(r=>setTimeout(r,1000));
+      await new Promise(r=>setTimeout(r,5000));
     }catch(err){
       console.log(`\n  ⚠️  Failed: ${label} — ${err.message}`);
       failed.push(article.id);
-      await new Promise(r=>setTimeout(r,3000));
+      await new Promise(r=>setTimeout(r,5000));
     }
   }
 
