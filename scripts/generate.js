@@ -17,7 +17,7 @@ if(!API_KEY||API_KEY.includes("your-key")){
 // ── HOW MANY ARTICLES TO GENERATE PER RUN ──
 // Each article takes ~10 seconds. 10 articles = ~2 minutes per run.
 // Run the workflow repeatedly until all 202 are done.
-const MAX_PER_RUN = 10;
+const MAX_PER_RUN = 1;
 
 const OUT_DIR = path.join(__dirname,"../public/data");
 if(!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR,{recursive:true});
